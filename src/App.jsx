@@ -6,20 +6,12 @@ import ResumeForm from './components/ResumeForm';
 import './App.css'
 
 function App() {
-  const [userData, setUserData] = useState({
-    firstName: '',
-    LasetName: ''
-  })
-
-  function handleSubmit(e) {
-    e.prevent.default();
-    console.log(userData)
-  }
+  
 
   return (
     <>
       <main>
-        <ResumeForm handleSubmit={handleSubmit}/>
+        <ResumeForm/>
       </main>
       
       {/* <PDFDownloadLink document={<Resume />} fileName='resume.pdf'>
