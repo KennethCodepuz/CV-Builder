@@ -24,7 +24,7 @@ export default function ResumeForm() {
       workTitle: '',
       workDate: '',
       workLocation: '',
-      workInfo: [],
+      workInfo: {},
     }
   ])
 
@@ -40,21 +40,17 @@ export default function ResumeForm() {
       workTitle: '',
       workDate: '',
       workLocation: '',
-      workInfo: [],
+      workInfo: {},
     }])
   }
 
-  function addWorkInfo(index) {
-    let i = 0;
-    const data = [...userWorkExperience]
-    data[index] = {...data[index], workInfo: [...data[index].workInfo, {[i]: ''}]}
-    i++;
-    setWorkExperience(data);
+  function addWorkInfo(index, count) {
+    setWorkExperience(prevExperience => prevExperience.map((exp, i) => i === index ? {...exp, workInfo: {...exp.workInfo, [count]: ''}} : exp));
   }
   
-  function handleExperienceInput(index, e) {
+  function handleExperienceInput(index, i, e) {
     const data = [...userWorkExperience];
-    data[index] = {...data[index], [e.target.name]: e.target.value};
+    data[index] = {...data[index], [e.target.name]: {...data[index].workInfo, [i]: e.target.value}};
     setWorkExperience(data);
   }
 
@@ -69,7 +65,7 @@ export default function ResumeForm() {
       <div>
         <form onSubmit={handleSubmit}>
           <UserInfo />
-          <WorkExperience userWorkExperience={userWorkExperience} addWorkInfo={addWorkInfo} handleSubmitExperience={handleExperienceInput} addWorkExperience={addWorkExperience} />
+          <WorkExperience userWorkExperience={userWorkExperience} addWorkInfo={addWorkInfo} handleExperienceInput={handleExperienceInput} handleSubmitExperience={handleExperienceInput} addWorkExperience={addWorkExperience} />
           <Education userEducation={userEducation}/>
           <Skills />
           <button type="submit" className="form-btn">Save</button>

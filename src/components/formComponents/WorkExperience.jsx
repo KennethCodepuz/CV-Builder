@@ -1,8 +1,8 @@
 import Experience from "./Experience"
 
-export default function WorkExperience({ userWorkExperience, addWorkInfo, handleSubmitExperience, addWorkExperience}) {
+export default function WorkExperience({ userWorkExperience, addWorkInfo, handleExperienceInput, handleSubmitExperience, addWorkExperience}) {
 
-  const workExperienceForm = userWorkExperience.map((workExperience, index) => <Experience key={index} workInfo={workExperience.workInfo} addWorkInfo={addWorkInfo} handleSubmitExperience={handleSubmitExperience} index={index}/>)
+  const workExperienceForm = userWorkExperience.map((workExperience, index) => <Experience key={index} workInfo={workExperience.workInfo} handleExperienceInput={handleExperienceInput} addWorkInfo={addWorkInfo} handleSubmitExperience={handleSubmitExperience} index={index}/>)
 
   return (
     <>

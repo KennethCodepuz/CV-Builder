@@ -1,11 +1,18 @@
+import { useState } from "react"
 
+export default function Experience({  workInfo, handleExperienceInput, addWorkInfo, handleSubmitExperience, index }) {
 
-export default function Experience({  workInfo, addWorkInfo, handleSubmitExperience, index }) {
+    const [infoCount, setCount] = useState(0);
 
-  const workInfoDisplay = workInfo.map((info, index) => <li key={index}>
-                                                          <input  type="textarea" cols={10} name="workInfo" className="workInfo"/>
-                                                        </li>
-                                                      )
+    const workInfoDisplay = Object.entries(workInfo).map((info, i) => <li key={i} id={i}>
+                                                                        <input onChange={(e) => handleExperienceInput(index, i, e)}  type="textarea" cols={10} name="workInfo" className="workInfo"/>
+                                                                      </li>
+    )
+    
+    function handleAddInfo(index, count) {
+      addWorkInfo(index, count);
+      setCount(prevCount => prevCount + 1);
+    }
 
   return (
     <div className="work-experience">
@@ -23,7 +30,7 @@ export default function Experience({  workInfo, addWorkInfo, handleSubmitExperie
             workInfoDisplay
           }
         </ul>
-        <button type="button" onClick={() => addWorkInfo(index)}>+ work info</button>
+        <button type="button" onClick={() => handleAddInfo(index, infoCount)}>+ work info</button>
       </div>
     </div>
   )
