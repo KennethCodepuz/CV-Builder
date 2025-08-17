@@ -5,10 +5,10 @@ import Education from "./formComponents/Education";
 import Skills from "./formComponents/Skills";
 
 export default function ResumeForm() {
-  const [userData, setUserData] = useState([
+  const [userData, setUserData] = useState(
     {
       firstName: '',
-      LasetName: '',
+      lastName: '',
       workTitle: '',
       address: '',
       phoneNumber: '',
@@ -17,7 +17,14 @@ export default function ResumeForm() {
       github: '',
       personalExperience: '',
     }
-  ])
+  )
+
+  function userDataInput(e) {
+    setUserData({
+      ...userData,
+      [e.target.name]: e.target.value,
+    })
+  }
 
   const [userWorkExperience, setWorkExperience] = useState([
     {
@@ -27,14 +34,6 @@ export default function ResumeForm() {
       workInfo: {},
     }
   ])
-
-  const [userEducation, setUserEducation] = useState([
-    {
-      schoolName: '',
-      course: '',
-    }
-  ])
-
   function addWorkExperience() {
     setWorkExperience([...userWorkExperience, {
       workTitle: '',
@@ -54,18 +53,32 @@ export default function ResumeForm() {
     setWorkExperience(data);
   }
 
+  function handleExperienceTitles(index, e) {
+    const data = [...userWorkExperience];
+    data[index] = {...data[index], [e.target.name]: e.target.value};
+    setWorkExperience(data);
+  }
+
+  const [userEducation, setUserEducation] = useState([
+    {
+      schoolName: '',
+      course: '',
+    }
+  ])
+
+
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(userWorkExperience)
-    // console.log(workInfo);
+    console.log(userData);
+    console.log(userWorkExperience);
   }
   
   return (
     <>
       <div>
         <form onSubmit={handleSubmit}>
-          <UserInfo />
-          <WorkExperience userWorkExperience={userWorkExperience} addWorkInfo={addWorkInfo} handleExperienceInput={handleExperienceInput} handleSubmitExperience={handleExperienceInput} addWorkExperience={addWorkExperience} />
+          <UserInfo userDataInput={userDataInput}/>
+          <WorkExperience userWorkExperience={userWorkExperience} addWorkInfo={addWorkInfo} handleExperienceInput={handleExperienceInput} handleExperienceTitles={handleExperienceTitles} addWorkExperience={addWorkExperience} />
           <Education userEducation={userEducation}/>
           <Skills />
           <button type="submit" className="form-btn">Save</button>
