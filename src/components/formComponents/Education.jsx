@@ -1,13 +1,13 @@
 import EducationForm from "./EducationForm"
 
-export default function Education() {
+export default function Education({ userEducation, handleEducationInput }) {
 
   return (
     <>
       <div className="education-container">
         <div>Education</div>
         <hr />
-        <EducationForm />
+        <EducationForm userEducation={userEducation} handleEducationInput={handleEducationInput}/>
         <button type="button">Add Education</button>
       </div>
     </>

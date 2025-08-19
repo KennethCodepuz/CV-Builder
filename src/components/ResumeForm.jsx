@@ -59,18 +59,28 @@ export default function ResumeForm() {
     setWorkExperience(data);
   }
 
-  const [userEducation, setUserEducation] = useState([
+  const [userEducation, setUserEducation] = useState(
     {
       schoolName: '',
       course: '',
     }
-  ])
+  )
+
+  function handleEducationInput(e) {
+    setUserEducation(prevEducation => (
+      {
+      ...prevEducation,
+      [e.target.name]: e.target.value
+    }
+    ))
+  }
 
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(userData);
-    console.log(userWorkExperience);
+    // console.log(userData);
+    // console.log(userWorkExperience);
+    console.log(userEducation);
   }
   
   return (
@@ -79,7 +89,7 @@ export default function ResumeForm() {
         <form onSubmit={handleSubmit}>
           <UserInfo userDataInput={userDataInput}/>
           <WorkExperience userWorkExperience={userWorkExperience} addWorkInfo={addWorkInfo} handleExperienceInput={handleExperienceInput} handleExperienceTitles={handleExperienceTitles} addWorkExperience={addWorkExperience} />
-          <Education userEducation={userEducation}/>
+          <Education userEducation={userEducation} handleEducationInput={handleEducationInput} />
           <Skills />
           <button type="submit" className="form-btn">Save</button>
         </form>
