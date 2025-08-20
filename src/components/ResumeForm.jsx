@@ -75,6 +75,13 @@ export default function ResumeForm() {
     ))
   }
 
+  function handleReactSelect(option, e) {
+    setUserEducation(prevEducation => ({
+      ...prevEducation,
+      [e.name]: option ? option.value : ''
+    }))
+  }
+
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -89,8 +96,8 @@ export default function ResumeForm() {
         <form onSubmit={handleSubmit}>
           <UserInfo userDataInput={userDataInput}/>
           <WorkExperience userWorkExperience={userWorkExperience} addWorkInfo={addWorkInfo} handleExperienceInput={handleExperienceInput} handleExperienceTitles={handleExperienceTitles} addWorkExperience={addWorkExperience} />
-          <Education userEducation={userEducation} handleEducationInput={handleEducationInput} />
-          <Skills />
+          <Education userEducation={userEducation} handleEducationInput={handleEducationInput} handleReactSelect={handleReactSelect} />
+          <Skills userEducation={userEducation.course}/>
           <button type="submit" className="form-btn">Save</button>
         </form>
       </div>

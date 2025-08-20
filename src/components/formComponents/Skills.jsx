@@ -1,7 +1,7 @@
 import Select from "react-select"
 import makeAnimated from "react-select/animated"
 
-export default function Skills() {
+export default function Skills({ userEducation }) {
   const programmingLanguagesOption = [
     {value: 'JavaScript', label: 'JavaScript'},
     {value: 'ReactJS', label: 'ReactJS'},
@@ -14,6 +14,13 @@ export default function Skills() {
     {value: 'C++', label: 'C++'},
   ]
 
+  function optionChoice() {
+    if(userEducation === 'Bachelor of Science in Computer Science' || userEducation === 'Bachelor of Science in Information Technology') {
+      return programmingLanguagesOption;
+    }
+
+  }
+
   const animatedComponents = makeAnimated();
 
   return (
@@ -24,9 +31,8 @@ export default function Skills() {
           <label>
             Programming Languanges and Frameworks
             <Select 
-              options={programmingLanguagesOption}
+              options={optionChoice()}
               isMulti
-              defaultValue={[programmingLanguagesOption[0]]}
               closeMenuOnSelect={false}
               components={animatedComponents}
             />  
