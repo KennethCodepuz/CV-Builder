@@ -62,6 +62,7 @@ export default function ResumeForm() {
   const [userEducation, setUserEducation] = useState(
     {
       schoolName: '',
+      sy: '',
       course: '',
     }
   )
@@ -75,11 +76,20 @@ export default function ResumeForm() {
     ))
   }
 
+  const [userSkills, setUserSkills] = useState ([])
+
   function handleReactSelect(option, e) {
     setUserEducation(prevEducation => ({
       ...prevEducation,
       [e.name]: option ? option.value : ''
     }))
+    setUserSkills([]);
+  }
+
+   
+
+  function handleSkillsInput(option) {
+    setUserSkills(option);
   }
 
 
@@ -87,7 +97,8 @@ export default function ResumeForm() {
     e.preventDefault();
     // console.log(userData);
     // console.log(userWorkExperience);
-    console.log(userEducation);
+    // console.log(userEducation);
+    console.log(userSkills);
   }
   
   return (
@@ -97,8 +108,8 @@ export default function ResumeForm() {
           <UserInfo userDataInput={userDataInput}/>
           <WorkExperience userWorkExperience={userWorkExperience} addWorkInfo={addWorkInfo} handleExperienceInput={handleExperienceInput} handleExperienceTitles={handleExperienceTitles} addWorkExperience={addWorkExperience} />
           <Education userEducation={userEducation} handleEducationInput={handleEducationInput} handleReactSelect={handleReactSelect} />
-          <Skills userEducation={userEducation.course}/>
-          <button type="submit" className="form-btn">Save</button>
+          <Skills userEducation={userEducation.course} handleSkillsInput={handleSkillsInput} setUserSkills={setUserSkills} userSkills={userSkills} />
+          <button type="submit" className="form-btn">Submit</button>
         </form>
       </div>
     </>

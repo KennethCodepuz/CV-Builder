@@ -14,11 +14,9 @@ export default function EducationForm({ userEducation, handleEducationInput, han
     <>
       <li>
         <input onChange={handleEducationInput} type="text" placeholder="Mariano Marcos State University" name="schoolName" className="schoolName"/>
+        <input onChange={handleEducationInput} type="text" name="sy" className="sy" placeholder="2014-2020"/>
         <Select onChange={(option, e) => handleReactSelect(option, e)} name="course" className="course" options={courseOptions}/>
-        {/* <select onChange={handleEducationInput} name="course" id="course" value={userEducation.course}>
-          <option value="">-- Select a course --</option>
-          {courseOptions.map(course => <option key={course.value} value={course.value}>{course.label}</option>)}
-        </select> */}
+        
       </li>
     </>
   )
