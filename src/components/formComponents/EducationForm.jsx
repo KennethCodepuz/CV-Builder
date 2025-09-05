@@ -9,14 +9,14 @@ export default function EducationForm({ userEducation, handleEducationInput, han
     {value: 'Bachelor of Science in Chemical Engineering', label: 'Bachelor of Science in Chemical Engineering'},
     {value: 'Bachelor of Science in Computer Engineering', label: 'Bachelor of Science in Computer Engineering'},
   ]
+
   
   return (
     <>
       <li>
-        <input onChange={handleEducationInput} type="text" placeholder="Mariano Marcos State University" name="schoolName" className="schoolName"/>
-        <input onChange={handleEducationInput} type="text" name="sy" className="sy" placeholder="2014-2020"/>
-        <Select onChange={(option, e) => handleReactSelect(option, e)} name="course" className="course" options={courseOptions}/>
-        
+        <input onChange={handleEducationInput} type="text" placeholder="Mariano Marcos State University" name="schoolName" className="schoolName" value={userEducation.schoolName} />
+        <input onChange={handleEducationInput} type="text" name="sy" className="sy" placeholder="2014-2020" value={userEducation.sy} />
+        <Select onChange={(option, e) => handleReactSelect(option, e)} name="course" className="course" options={courseOptions} value={userEducation.course} />
       </li>
     </>
   )

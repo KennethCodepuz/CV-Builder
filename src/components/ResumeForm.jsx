@@ -9,7 +9,7 @@ export default function ResumeForm() {
     {
       firstName: '',
       lastName: '',
-      workTitle: '',
+      techRole: '',
       address: '',
       phoneNumber: '',
       email: '',
@@ -81,7 +81,7 @@ export default function ResumeForm() {
   function handleReactSelect(option, e) {
     setUserEducation(prevEducation => ({
       ...prevEducation,
-      [e.name]: option ? option.value : ''
+      [e.name]: option ? option : ''
     }))
     setUserSkills([]);
   }
@@ -95,21 +95,66 @@ export default function ResumeForm() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    // console.log(userData);
-    // console.log(userWorkExperience);
-    // console.log(userEducation);
-    console.log(userSkills);
+    const formData = new FormData(e.target);
+
+    const formattedData = {
+      firstName: formData.get('firstName'),
+      lastName: formData.get('lastName'),
+      techRole: formData.get('techRole'),
+      address: formData.get('address'),
+      phoneNumber: formData.get('phoneNumber'),
+      email: formData.get('email'),
+      linkedin: formData.get('linkedin'),
+      github: formData.get('github'),
+      personalExperience: formData.get('personalExperience'),
+      schoolName: formData.get('schoolName'),
+      sy: formData.get('sy'),
+      course: formData.get('course'),
+      userWorkExperience,
+      userSkills: userSkills.map(item => item.value)
+    }
+
+    console.log( formattedData );
+  }
+
+  function clearAllInput() {
+    setUserData({
+      firstName: '',
+      lastName: '',
+      techRole: '',
+      address: '',
+      phoneNumber: '',
+      email: '',
+      linkedin: '',
+      github: '',
+      personalExperience: '',
+    });
+    setWorkExperience([
+      {
+        workTitle: '',
+        workDate: '',
+        workLocation: '',
+        workInfo: {},
+      }
+    ]);
+    setUserEducation({
+      schoolName: '',
+      sy: '',
+      course: '',
+    });
+    setUserSkills([]);
   }
   
   return (
     <>
       <div>
         <form onSubmit={handleSubmit}>
-          <UserInfo userDataInput={userDataInput}/>
+          <UserInfo userDataInput={userDataInput} userData={userData} />
           <WorkExperience userWorkExperience={userWorkExperience} addWorkInfo={addWorkInfo} handleExperienceInput={handleExperienceInput} handleExperienceTitles={handleExperienceTitles} addWorkExperience={addWorkExperience} />
           <Education userEducation={userEducation} handleEducationInput={handleEducationInput} handleReactSelect={handleReactSelect} />
           <Skills userEducation={userEducation.course} handleSkillsInput={handleSkillsInput} setUserSkills={setUserSkills} userSkills={userSkills} />
           <button type="submit" className="form-btn">Submit</button>
+          <button type="button" onClick={clearAllInput}>Clear</button>;
         </form>
       </div>
     </>

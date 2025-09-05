@@ -178,27 +178,27 @@ export default function Skills({ userEducation, handleSkillsInput, setUserSkills
       { value: 'Cloud Platforms (AWS, Azure, GCP - basics)', label: 'Cloud Platforms (AWS, Azure, GCP - basics)' },
     ]
 
-    if(userEducation === 'Bachelor of Science in Computer Science') {
+    if(userEducation.value === 'Bachelor of Science in Computer Science') {
       return programmingLanguagesOption;
     }
 
-    if(userEducation === 'Bachelor of Science in Information Technology') {
+    if(userEducation.value === 'Bachelor of Science in Information Technology') {
       return informationTechnologySkillsOption;
     }
 
-    if(userEducation === 'Bachelor of Science in Civil Engineering') {
+    if(userEducation.value === 'Bachelor of Science in Civil Engineering') {
       return civilEngineeringSkillsOption;
     }
 
-    if(userEducation === 'Bachelor of Science in Electrical Engineering') {
+    if(userEducation.value === 'Bachelor of Science in Electrical Engineering') {
       return electricalEngineeringSkillsOption;
     }
 
-    if(userEducation === 'Bachelor of Science in Chemical Engineering') {
+    if(userEducation.value === 'Bachelor of Science in Chemical Engineering') {
       return chemicalEngineeringSkillsOption;
     }
 
-    if(userEducation === 'Bachelor of Science in Computer Engineering') {
+    if(userEducation.value === 'Bachelor of Science in Computer Engineering') {
       return computerEngineeringSkillsOption;
     }
 
@@ -214,6 +214,7 @@ export default function Skills({ userEducation, handleSkillsInput, setUserSkills
           <label>
             Programming Languanges and Frameworks
             <Select 
+              name="skillsArray[]"
               onChange={(option) => handleSkillsInput(option)}
               options={optionChoice(userEducation)}
               isMulti
