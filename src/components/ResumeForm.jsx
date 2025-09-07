@@ -4,21 +4,8 @@ import WorkExperience from "./formComponents/WorkExperience"
 import Education from "./formComponents/Education";
 import Skills from "./formComponents/Skills";
 
-export default function ResumeForm() {
-  const [userData, setUserData] = useState(
-    {
-      firstName: '',
-      lastName: '',
-      techRole: '',
-      address: '',
-      phoneNumber: '',
-      email: '',
-      linkedin: '',
-      github: '',
-      personalExperience: '',
-    }
-  )
-
+export default function ResumeForm({ userData, setUserData, userWorkExperience, setWorkExperience, userEducation, setUserEducation, userSkills, setUserSkills, handleSubmit }) {
+  
   function userDataInput(e) {
     setUserData({
       ...userData,
@@ -26,14 +13,7 @@ export default function ResumeForm() {
     })
   }
 
-  const [userWorkExperience, setWorkExperience] = useState([
-    {
-      workTitle: '',
-      workDate: '',
-      workLocation: '',
-      workInfo: {},
-    }
-  ])
+  
   function addWorkExperience() {
     setWorkExperience([...userWorkExperience, {
       workTitle: '',
@@ -59,13 +39,7 @@ export default function ResumeForm() {
     setWorkExperience(data);
   }
 
-  const [userEducation, setUserEducation] = useState(
-    {
-      schoolName: '',
-      sy: '',
-      course: '',
-    }
-  )
+  
 
   function handleEducationInput(e) {
     setUserEducation(prevEducation => (
@@ -76,7 +50,7 @@ export default function ResumeForm() {
     ))
   }
 
-  const [userSkills, setUserSkills] = useState ([])
+  
 
   function handleReactSelect(option, e) {
     setUserEducation(prevEducation => ({
@@ -93,29 +67,7 @@ export default function ResumeForm() {
   }
 
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-
-    const formattedData = {
-      firstName: formData.get('firstName'),
-      lastName: formData.get('lastName'),
-      techRole: formData.get('techRole'),
-      address: formData.get('address'),
-      phoneNumber: formData.get('phoneNumber'),
-      email: formData.get('email'),
-      linkedin: formData.get('linkedin'),
-      github: formData.get('github'),
-      personalExperience: formData.get('personalExperience'),
-      schoolName: formData.get('schoolName'),
-      sy: formData.get('sy'),
-      course: formData.get('course'),
-      userWorkExperience,
-      userSkills: userSkills.map(item => item.value)
-    }
-
-    console.log( formattedData );
-  }
+  
 
   function clearAllInput() {
     setUserData({

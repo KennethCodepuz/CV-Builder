@@ -6,19 +6,81 @@ import ResumeForm from './components/ResumeForm';
 import './App.css'
 
 function App() {
+  const [userData, setUserData] = useState(
+    {
+      firstName: '',
+      lastName: '',
+      techRole: '',
+      address: '',
+      phoneNumber: '',
+      email: '',
+      linkedin: '',
+      github: '',
+      personalExperience: '',
+    }
+  )
+
+  const [userWorkExperience, setWorkExperience] = useState([
+    {
+      workTitle: '',
+      workDate: '',
+      workLocation: '',
+      workInfo: {},
+    }
+  ])
+
+  const [userEducation, setUserEducation] = useState(
+    {
+      schoolName: '',
+      sy: '',
+      course: '',
+    }
+  )
+
+  const [userSkills, setUserSkills] = useState ([])
+
+  const [userFormattedData, setUserFormattedData] = useState({});
+  const [formSubmitted, setFormSubmitted] = useState(false);
   
+  function handleSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+
+    const formattedData = {
+      firstName: formData.get('firstName'),
+      lastName: formData.get('lastName'),
+      techRole: formData.get('techRole'),
+      address: formData.get('address'),
+      phoneNumber: formData.get('phoneNumber'),
+      email: formData.get('email'),
+      linkedin: formData.get('linkedin'),
+      github: formData.get('github'),
+      personalExperience: formData.get('personalExperience'),
+      schoolName: formData.get('schoolName'),
+      sy: formData.get('sy'),
+      course: formData.get('course'),
+      userWorkExperience,
+      userSkills: userSkills.map(item => item.value)
+    }
+
+    setUserFormattedData(formattedData);
+    setFormSubmitted(prev => !prev);
+  }
 
   return (
     <>
       <main>
-        <ResumeForm/>
+        <ResumeForm userData={userData} setUserData={setUserData} 
+                    userWorkExperience={userWorkExperience} setWorkExperience={setWorkExperience}
+                    userEducation={userEducation} setUserEducation={setUserEducation}
+                    userSkills={userSkills} setUserSkills={setUserSkills} handleSubmit={handleSubmit} />
       </main>
       
-      {/* <PDFDownloadLink document={<Resume />} fileName='resume.pdf'>
+      {formSubmitted && <PDFDownloadLink document={<Resume userFormattedData={userFormattedData} />} fileName='resume.pdf'>
         {({ blob, url, loading, error }) =>
             loading ? 'Loading document...' : 'Download PDF'
           }
-      </PDFDownloadLink> */}
+      </PDFDownloadLink>}
     </> 
   )
 }
