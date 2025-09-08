@@ -106,7 +106,7 @@ export default function ResumeForm({ userData, setUserData, userWorkExperience, 
           <Education userEducation={userEducation} handleEducationInput={handleEducationInput} handleReactSelect={handleReactSelect} />
           <Skills userEducation={userEducation.course} handleSkillsInput={handleSkillsInput} setUserSkills={setUserSkills} userSkills={userSkills} />
           <button type="submit" className="form-btn">Submit</button>
-          <button type="button" onClick={clearAllInput}>Clear</button>;
+          <button type="button" onClick={clearAllInput}>Clear</button>
         </form>
       </div>
     </>

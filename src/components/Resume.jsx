@@ -14,8 +14,17 @@
   });
 
   export default function Resume({ userFormattedData }) {
-    console.log(userFormattedData);
-
+    
+    const displayWorkExp = userFormattedData.userWorkExperience.map((exp, i) => 
+            (
+            <View key={i}>
+              <Text>{exp.workTitle}</Text>
+              <Text>{exp.workDate}</Text>
+              <Text>{exp.workLocation}</Text>
+              { Object.values(exp.workInfo).map((info, i) => <Text key={i}>{info}</Text>) }
+            </View>)
+            )
+  
     return (
     <Document>
       <Page size="A4" style={styles.page} >
@@ -33,14 +42,7 @@
           <Text>{userFormattedData.schoolName}</Text>
           <Text>{userFormattedData.sy}</Text>
           <Text>{userFormattedData.course}</Text>
-          {userFormattedData.userWorkExperience.map((exp, i) => {
-            <div key={i}>
-              <Text>{exp.workTitle}</Text>
-              <Text>{exp.workDate}</Text>
-              <Text>{exp.workLocation}</Text>
-              <Text>{exp.workInfo}</Text>
-            </div>
-            })}
+          { displayWorkExp }
           {userFormattedData.userSkills.map(skill => <Text key={skill}>{skill}</Text>)}
         </View>
       </Page>
