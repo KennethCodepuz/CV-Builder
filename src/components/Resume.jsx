@@ -1,4 +1,5 @@
   import { Page, Text, View, Document, StyleSheet, PDFViewer } from '@react-pdf/renderer';
+  import React from 'react';
 
   const styles = StyleSheet.create({
     page: {
@@ -15,24 +16,24 @@
 
   export default function Resume({ userFormattedData }) {
     
-    const displayWorkExp = userFormattedData.userWorkExperience.map((exp, i) => 
-            (
-            <View key={i}>
-              <Text>{exp.workTitle}</Text>
-              <Text>{exp.workDate}</Text>
-              <Text>{exp.workLocation}</Text>
-              { Object.values(exp.workInfo).map((info, i) => <Text key={i}>{info}</Text>) }
-            </View>)
-            )
-  
+    // const displayWorkExp = (userFormattedData.userWorkExperience ?? []).map((exp, i) => 
+    //         (
+    //         <View key={i}>
+    //           <Text>{exp.workTitle}</Text>
+    //           <Text>{exp.workDate}</Text>
+    //           <Text>{exp.workLocation}</Text>
+    //           { Object.values(exp.workInfo ?? {}).map((info, i) => <Text key={i}>{info}</Text>) }
+    //         </View>)
+    // )
+    
+
     return (
     <Document>
       <Page size="A4" style={styles.page} >
         <View style={styles.section}>
-          <Text>whatsupppp!</Text>
           <Text>{userFormattedData.firstName}</Text>
           <Text>{userFormattedData.lastName}</Text>
-          <Text>{userFormattedData.techRole}</Text>
+          {/* <Text>{userFormattedData.techRole}</Text>
           <Text>{userFormattedData.address}</Text>
           <Text>{userFormattedData.phoneNumber}</Text>
           <Text>{userFormattedData.email}</Text>
@@ -43,7 +44,7 @@
           <Text>{userFormattedData.sy}</Text>
           <Text>{userFormattedData.course}</Text>
           { displayWorkExp }
-          {userFormattedData.userSkills.map(skill => <Text key={skill}>{skill}</Text>)}
+          {(userFormattedData.userSkills ?? []).map(skill => <Text key={skill}>{skill}</Text>)} */}
         </View>
       </Page>
     </Document>

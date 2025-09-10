@@ -47,40 +47,50 @@ function App() {
     const formData = new FormData(e.target);
 
     const formattedData = {
-      firstName: formData.get('firstName'),
-      lastName: formData.get('lastName'),
-      techRole: formData.get('techRole'),
-      address: formData.get('address'),
-      phoneNumber: formData.get('phoneNumber'),
-      email: formData.get('email'),
-      linkedin: formData.get('linkedin'),
-      github: formData.get('github'),
-      personalExperience: formData.get('personalExperience'),
-      schoolName: formData.get('schoolName'),
-      sy: formData.get('sy'),
-      course: formData.get('course'),
-      userWorkExperience,
-      userSkills: userSkills.map(item => item.value)
+      firstName: formData.get('firstName') ?? '',
+      lastName: formData.get('lastName') ?? '',
+      techRole: formData.get('techRole') ?? '',
+      address: formData.get('address') ?? '',
+      phoneNumber: formData.get('phoneNumber') ?? '',
+      email: formData.get('email') ?? '',
+      linkedin: formData.get('linkedin') ?? '',
+      github: formData.get('github') ?? '',
+      personalExperience: formData.get('personalExperience') ?? '',
+      schoolName: formData.get('schoolName') ?? '',
+      sy: formData.get('sy') ?? '',
+      course: formData.get('course') ?? '',
+      userWorkExperience: userWorkExperience ?? {},
+      userSkills: (userSkills ?? []).map(item => item.value) 
     }
 
     setUserFormattedData(formattedData);
-    setFormSubmitted(prev => !prev);
+    setFormSubmitted(true);
   }
+
 
   return (
     <>
       <main>
-        <ResumeForm userData={userData} setUserData={setUserData} 
+        {
+          formSubmitted ? 
+          <PDFViewer style={{width: '40em', height: '56.56em'}} showToolbar={false}> 
+            <Resume userFormattedData={userFormattedData} /> 
+          </PDFViewer> : 
+            <ResumeForm userData={userData} setUserData={setUserData} 
                     userWorkExperience={userWorkExperience} setWorkExperience={setWorkExperience}
                     userEducation={userEducation} setUserEducation={setUserEducation}
                     userSkills={userSkills} setUserSkills={setUserSkills} handleSubmit={handleSubmit} />
+        }
+        
       </main>
       
-      {formSubmitted && <PDFDownloadLink document={<Resume userFormattedData={userFormattedData} />} fileName='resume.pdf'>
+      {/* {formSubmitted && <PDFDownloadLink document={<Resume userFormattedData={userFormattedData} />} fileName='resume.pdf'>
         {({ blob, url, loading, error }) =>
             loading ? 'Loading document...' : 'Download PDF'
           }
-      </PDFDownloadLink>}
+      </PDFDownloadLink>} */}
+
+      
     </> 
   )
 }
