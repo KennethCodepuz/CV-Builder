@@ -5,7 +5,7 @@
     page: {
       backgroundColor: '#ffffffff',
       margin: 0,
-      padding: 30,
+      padding: 60,
     },
     section: {
       width: '100%',
@@ -17,12 +17,12 @@
       alignItems: 'center',
     },
     name: {
-      fontSize: 36,
+      fontSize: 32,
       fontWeight: 700,
       textAlign: 'center'
     },
     careerRole: {
-      fontSize: 18,
+      fontSize: 16,
       textAlign: 'center',
     },
     linksContainer: {
@@ -35,15 +35,48 @@
       rowGap: 5,
     },
     links : {
-      width: 160,
+      paddingLeft: 20,
       fontSize: 12,
-      textAlign: 'center'
+      textAlign: 'center',
+      color: '#474747ff',
     },
     horizontalLine: {
       height: 2,
       backgroundColor: '000000',
-      marginTop: 10,
+      marginTop: 5,
       marginBottom: 10,
+    },
+    sectionTitleStyle: {
+      fontSize: 18, 
+      fontWeight: 800,
+      paddingTop: 10,
+      paddingBottom: 10,
+    },
+    personalExperience: {
+      fontSize: 13,
+      lineHeight: 1.5,
+      color: '#36454F',
+    },
+    workPlaceAndDateContainer: {
+      flexDirection: 'row',
+    },  
+    experiencePlace: {
+      fontSize: 13,
+      color: '#747575ff',
+      lineHeight: 1.5,
+    },  
+    experienceTitle: {
+      fontSize: 14,
+      fontWeight: 800,
+      lineHeight: 1.5,
+    },
+    workInfo: {
+      paddingLeft: 15,
+      fontSize: 14,
+    },
+    skillsContainer: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
     }
   });
 
@@ -51,11 +84,14 @@
     
     const displayWorkExp = (userFormattedData.userWorkExperience ?? []).map((exp, i) => 
             (
-            <View key={i}>
-              <Text>{exp.workTitle}</Text>
-              <Text>{exp.workDate}</Text>
-              <Text>{exp.workLocation}</Text>
-              { Object.values(exp.workInfo ?? {}).map((info, i) => <Text key={i}>{info}</Text>) }
+            <View style={{paddingBottom: 15}} key={i}>
+              <View style={styles.workPlaceAndDateContainer}>
+                <Text style={styles.experiencePlace}>{exp.workPlace}</Text>
+                 <Text style={styles.experiencePlace}>{exp.workPlace ? ' | ' : null}</Text>
+                <Text style={styles.experiencePlace}>{exp.workDate}</Text>
+              </View>
+              <Text style={styles.experienceTitle}>{exp.workTitle}</Text>
+              { Object.values(exp.workInfo ?? {}).map((info, i) => <Text style={styles.workInfo} key={i}>• {info}</Text>) }
             </View>)
     )
     
@@ -78,13 +114,29 @@
             <Text style={[styles.links]}>{userFormattedData.github}</Text>
           </View>
           <View style={styles.horizontalLine}></View>
-          
-          <Text>{userFormattedData.personalExperience}</Text>
-          <Text>{userFormattedData.schoolName}</Text>
-          <Text>{userFormattedData.sy}</Text>
-          <Text>{userFormattedData.course}</Text>
-          { displayWorkExp }
-          {(userFormattedData.userSkills ?? []).map(skill => <Text key={skill}>{skill}</Text>)}
+          <View>
+            <Text style={styles.sectionTitleStyle}>ABOUT ME</Text>
+            <Text style={styles.personalExperience}>{userFormattedData.personalExperience}</Text>
+          </View>
+          <View style={styles.horizontalLine}></View>
+          <View>
+            <Text style={styles.sectionTitleStyle}>WORK EXPERIENCE</Text>
+            { displayWorkExp }
+          </View>
+          <View style={styles.horizontalLine}></View>
+          <View>
+            <Text style={styles.sectionTitleStyle}>EDUCATION</Text>
+            <Text style={{fontSize: 14, color: '#747575ff', lineHeight: 1.5}}>{userFormattedData.sy}</Text>
+            <Text style={{fontSize: 18, fontWeight: 700, lineHeight: 1.5}}>{userFormattedData.schoolName}</Text>
+            <Text style={{fontSize: 14, lineHeight: 1.5, fontWeight: 600, paddingLeft: 10}}>{userFormattedData.course ? `• ${userFormattedData.course}` : null}</Text>
+          </View>
+          <View style={styles.horizontalLine}></View>
+          <View>
+            <Text style={styles.sectionTitleStyle}>SKILLS</Text>
+            <View style={styles.skillsContainer}>
+              {(userFormattedData.userSkills ?? []).map(skill => <Text style={{paddingRight: 20}} key={skill}>{skill ? `• ${skill}` : null}</Text>)}
+            </View>
+          </View>
         </View>
       </Page>
     </Document>

@@ -8,7 +8,7 @@ export default function Education({ userEducation, handleEducationInput, handleR
         <div>Education</div>
         <hr />
         <EducationForm userEducation={userEducation} handleEducationInput={handleEducationInput} handleReactSelect={handleReactSelect} />
-        <button type="button">Add Education</button>
+        
       </div>
     </>
   )

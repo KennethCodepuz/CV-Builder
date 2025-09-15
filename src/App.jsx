@@ -22,9 +22,9 @@ function App() {
 
   const [userWorkExperience, setWorkExperience] = useState([
     {
-      workTitle: '',
+      workPlace: '',
       workDate: '',
-      workLocation: '',
+      workTitle: '',
       workInfo: {},
     }
   ])
@@ -84,13 +84,13 @@ function App() {
         
       </main>
       
-      {/* {formSubmitted && <PDFDownloadLink document={<Resume userFormattedData={userFormattedData} />} fileName='resume.pdf'>
+      <div>
+        {formSubmitted && <PDFDownloadLink document={<Resume userFormattedData={userFormattedData} />} fileName='resume.pdf'>
         {({ blob, url, loading, error }) =>
             loading ? 'Loading document...' : 'Download PDF'
           }
-      </PDFDownloadLink>} */}
-
-      
+        </PDFDownloadLink>}
+      </div>
     </> 
   )
 }

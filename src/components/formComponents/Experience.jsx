@@ -17,12 +17,12 @@ export default function Experience({  userWorkExperience, workInfo, handleExperi
     <div className="work-experience">
       <div className="work-experience-group">
         <div className="title-and-date-container">
-          <input onChange={(e) => handleExperienceTitles(index, e)} type="text" name="workTitle" className="work-title" placeholder="Software Developer" value={userWorkExperience[index].workTitle} />
+          <input onChange={(e) => handleExperienceTitles(index, e)} type="text" name="workPlace" className="workPlace" placeholder="Google" value={userWorkExperience[index].workPlace} />
           <input onChange={(e) => handleExperienceTitles(index, e)} type="text" name="workDate" placeholder="2015 - Present" className="work-date" value={userWorkExperience[index].workDate} /> 
         </div>
         
         <div className="work-location-form-group">
-          <input onChange={(e) => handleExperienceTitles(index, e)} type="text" name="workLocation" className="work-location" placeholder="Manila City, Philippines" value={userWorkExperience[index].workLocation} />
+          <input onChange={(e) => handleExperienceTitles(index, e)} type="text" name="workTitle" className="workTitle" placeholder="Front-end Developer" value={userWorkExperience[index].workTitle} />
         </div>
         <ul className="work-info">
           {

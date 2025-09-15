@@ -16,9 +16,9 @@ export default function ResumeForm({ userData, setUserData, userWorkExperience, 
   
   function addWorkExperience() {
     setWorkExperience([...userWorkExperience, {
-      workTitle: '',
+      workPlace: '',
       workDate: '',
-      workLocation: '',
+      workTitle: '',
       workInfo: {},
     }])
   }
@@ -83,9 +83,9 @@ export default function ResumeForm({ userData, setUserData, userWorkExperience, 
     });
     setWorkExperience([
       {
-        workTitle: '',
+        workPlace: '',
         workDate: '',
-        workLocation: '',
+        workTitle: '',
         workInfo: {},
       }
     ]);
