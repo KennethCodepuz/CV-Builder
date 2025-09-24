@@ -1,4 +1,5 @@
 import Experience from "./Experience"
+import '../../styles/workExperience.css'
 
 export default function WorkExperience({ userWorkExperience, addWorkInfo, handleExperienceInput, handleExperienceTitles, addWorkExperience}) {
 
@@ -7,10 +8,10 @@ export default function WorkExperience({ userWorkExperience, addWorkInfo, handle
   return (
     <>
       <div className="work-experience-form-group">
-        <div>WORK EXPERIENCE</div>
         <hr />
+        <h3>WORK EXPERIENCE</h3>
         {workExperienceForm}
-        <button type="button" onClick={addWorkExperience}>+ work experience</button>
+        <button type="button" onClick={addWorkExperience} className="work-experience-button">Add Work Experience</button>
       </div>
     </>
   )

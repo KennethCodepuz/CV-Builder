@@ -1,0 +1,54 @@
+
+.name-form-group {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  column-gap: 1rem;
+}
+
+.name {
+  min-height: 2rem;
+  width: clamp(150px, 50%, 200px);
+  padding-inline-start: .5rem;
+  font-size: .8rem;
+}
+
+.title-form-group {
+  margin-block: .5rem;
+  width: 100%;
+  text-align: center;
+}
+
+.workTitle {
+  min-height: 2rem;
+  width: clamp(150px, 50%, 200px);
+}
+
+.contact-form-group {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: .5rem;
+  justify-content: center;
+  margin-block: .5rem;
+}
+
+.contact-form-group li input {
+  width: clamp(100px, 120px, 150px);
+  min-height: 1.2rem;
+}
+
+.user-summary-form-group {
+  width: 100%;
+  padding-block-end: .5rem;
+}
+
+h3 {
+  margin-block: .5rem;
+}
+
+.personalExperience {
+  width: 100%;
+  font-size: 1.1rem;
+  padding-inline-start: .5rem;
+}

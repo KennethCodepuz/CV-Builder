@@ -1,4 +1,5 @@
 import Select from "react-select"
+import '../../styles/education.css'
 
 export default function EducationForm({ userEducation, handleEducationInput, handleReactSelect }) {
   const courseOptions = [
@@ -13,11 +14,11 @@ export default function EducationForm({ userEducation, handleEducationInput, han
   
   return (
     <>
-      <li>
+      <div className="education-form-group">
+        <input onChange={handleEducationInput} type="text" name="sy" className="school-year" placeholder="2014-2020" value={userEducation.sy} />
         <input onChange={handleEducationInput} type="text" placeholder="Mariano Marcos State University" name="schoolName" className="schoolName" value={userEducation.schoolName} />
-        <input onChange={handleEducationInput} type="text" name="sy" className="sy" placeholder="2014-2020" value={userEducation.sy} />
         <Select onChange={(option, e) => handleReactSelect(option, e)} name="course" className="course" options={courseOptions} value={userEducation.course} />
-      </li>
+      </div>
     </>
   )
 }

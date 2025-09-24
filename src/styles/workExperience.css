@@ -1,0 +1,69 @@
+
+
+.work-experience {
+  margin-block-end: 1rem;
+}
+
+.work-experience-form-group {
+  width: 100%;
+  padding-block-end: 1rem;
+}
+
+.title-and-date-container {
+  margin-block-end: .2rem;
+}
+
+.title-and-date-container input{
+  width: clamp(100px, 120px, 150px);
+  min-height: 2rem;
+  /* margin-inline-end: 1rem; */
+  font-size: 1rem;
+  font-size: .9rem;
+}
+
+.work-info-list {
+  list-style: none;
+  margin-block: .5rem;
+}
+
+.work-info-list li{
+  margin-inline-start: 2rem;
+}
+
+.work-info-list li input {
+  width: 75%;
+  min-height: 2rem;
+  font-size: .8rem;
+}
+
+.workInfo-button {
+  width: 150px;
+  padding-block: .4rem; 
+  font-size: .8rem;
+  border: none;
+  background-color: rgb(247, 229, 205);
+  border-radius: 8px;
+  transition: transform 100ms ease-in;
+  cursor: pointer;
+}
+
+.workInfo-button:hover {
+  background-color: rgb(248, 213, 174);
+  transform: scale(1.05);
+}
+
+.work-experience-button {
+  width: 150px;
+  padding-block: .5rem;
+  font-size: .8rem;
+  background-color: rgb(243, 206, 159);
+  border: none;
+  border-radius: 8px;
+  transition: transform 100ms ease-in;
+  cursor: pointer;
+}
+
+.work-experience-button:hover {
+  background-color: rgb(245, 215, 176);
+  transform: scale(1.07);
+}

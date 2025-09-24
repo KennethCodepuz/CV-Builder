@@ -1,10 +1,10 @@
 import Select from "react-select"
 import makeAnimated from "react-select/animated"
+import '../../styles/skills.css'
 
-export default function Skills({ userEducation, handleSkillsInput, setUserSkills, userSkills }) {
+export default function Skills({ userEducation, handleSkillsInput, setUserSkills, userSkills, handleUserLanguagesAndFrameworks, userProgrammingLanguagesAndFrameworks }) {
 
-  function optionChoice(userEducation) {
-    const programmingLanguagesOption = [
+  const programmingLanguagesOption = [
       { value: 'JavaScript', label: 'JavaScript' },
       { value: 'TypeScript', label: 'TypeScript' },
       { value: 'Python', label: 'Python' },
@@ -21,6 +21,9 @@ export default function Skills({ userEducation, handleSkillsInput, setUserSkills
       { value: 'R', label: 'R' },
       { value: 'MATLAB', label: 'MATLAB' },
     ]
+
+  function optionChoice(userEducation) {
+    
 
     const civilEngineeringSkillsOption = [
       { value: 'AutoCAD', label: 'AutoCAD' },
@@ -178,11 +181,7 @@ export default function Skills({ userEducation, handleSkillsInput, setUserSkills
       { value: 'Cloud Platforms (AWS, Azure, GCP - basics)', label: 'Cloud Platforms (AWS, Azure, GCP - basics)' },
     ]
 
-    if(userEducation.value === 'Bachelor of Science in Computer Science') {
-      return programmingLanguagesOption;
-    }
-
-    if(userEducation.value === 'Bachelor of Science in Information Technology') {
+    if(userEducation.value === 'Bachelor of Science in Information Technology' || userEducation.value === 'Bachelor of Science in Computer Science') {
       return informationTechnologySkillsOption;
     }
 
@@ -211,8 +210,31 @@ export default function Skills({ userEducation, handleSkillsInput, setUserSkills
       <hr />
       <div className="skills-container">
         <div className="languanges">
+          <hr />
+          { userEducation.value === 'Bachelor of Science in Computer Science' || userEducation.value === 'Bachelor of Science in Information Technology' || userEducation.value === 'Bachelor of Science in Computer Engineering' ? 
+            <>
+              <label>
+                <h4>
+                  Programming Languanges and Frameworks
+                </h4>
+              
+                <Select 
+                  name="languangesAndFrameworks[]"
+                  onChange={(option) => handleUserLanguagesAndFrameworks(option)}
+                  options={programmingLanguagesOption}
+                  isMulti
+                  closeMenuOnSelect={false}
+                  components={animatedComponents}
+                  value={userProgrammingLanguagesAndFrameworks}
+                />  
+            </label>
+            </> :
+            null
+          }
           <label>
-            Programming Languanges and Frameworks
+            <h4>
+              Skills
+            </h4>
             <Select 
               name="skillsArray[]"
               onChange={(option) => handleSkillsInput(option)}
@@ -221,8 +243,9 @@ export default function Skills({ userEducation, handleSkillsInput, setUserSkills
               closeMenuOnSelect={false}
               components={animatedComponents}
               value={userSkills}
-            />  
+          />
           </label>
+          
         </div>
       </div>
     </>

@@ -9,10 +9,6 @@ so you can pass it to your employers.
 -Show user info in a CV
 -Be able to download built CV
 
-## Additional features
-
--Use AI to fix grammars and structure of sentences(if users makes mistake and users first langauge is not english)
--More CV templates
 
 ## Techs
 

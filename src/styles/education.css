@@ -1,0 +1,17 @@
+
+.education-container {
+  width: 100%;
+  padding-block-end: .5rem;
+}
+
+.school-year {
+  display: block;
+  width: 100px;
+  min-height: 1.5rem;
+}
+
+.schoolName {
+  width: 210px;
+  margin-block: .5rem;
+  min-height: 2rem;
+}

@@ -77,6 +77,8 @@
     skillsContainer: {
       flexDirection: 'row',
       flexWrap: 'wrap',
+      fontSize: 12,
+      paddingTop: 10,
     }
   });
 
@@ -94,7 +96,6 @@
               { Object.values(exp.workInfo ?? {}).map((info, i) => <Text style={styles.workInfo} key={i}>• {info}</Text>) }
             </View>)
     )
-    
 
     return (
     <Document>
@@ -131,12 +132,23 @@
             <Text style={{fontSize: 14, lineHeight: 1.5, fontWeight: 600, paddingLeft: 10}}>{userFormattedData.course ? `• ${userFormattedData.course}` : null}</Text>
           </View>
           <View style={styles.horizontalLine}></View>
-          <View>
-            <Text style={styles.sectionTitleStyle}>SKILLS</Text>
-            <View style={styles.skillsContainer}>
-              {(userFormattedData.userSkills ?? []).map(skill => <Text style={{paddingRight: 20}} key={skill}>{skill ? `• ${skill}` : null}</Text>)}
+          <View style={{flexDirection: 'row'}}>
+            <Text style={[styles.sectionTitleStyle, {marginRight: 15, fontSize: 14}]}>SKILLS: </Text>
+            <View style={[styles.skillsContainer]}>
+              {(userFormattedData.userSkills ?? []).map(skill => <Text key={skill}>{skill ? `${skill}, ` : null}</Text>)}
             </View>
           </View>
+          {
+            userFormattedData.userProgrammingLanguagesAndFrameworks ? 
+            <View style={{flexDirection: 'row'}}>
+              <Text  style={[styles.sectionTitleStyle, {marginRight: 5, fontSize: 14}]}>Languages And Frameworks: </Text>
+              <View style={[styles.skillsContainer, {paddingTop: 12}]}>
+                {(userFormattedData.userProgrammingLanguagesAndFrameworks).map(item => <Text key={item}>{item}, </Text>)}
+              </View>
+            </View>
+            : 
+            null
+          }
         </View>
       </Page>
     </Document>
